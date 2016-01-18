@@ -27,9 +27,8 @@ class Map {
 
     }
 
-
-
 }
+
 class Player {
     x: number;
     y: number;
@@ -41,15 +40,17 @@ class Player {
         this.y = y;
         this.direction = direction;
     }
-    rotate(angle: number) {
+    rotate(angle: number) : Player {
         this.direction = (this.direction + angle + (Math.PI * 2)) % (Math.PI * 2);
+        return this
     }
 
-    walk(distance: number, map: Map) {
+    walk(distance: number, map: Map) : Player {
         var dx = Math.cos(this.direction) * distance;
         var dy = Math.sin(this.direction) * distance;
         if (map.get(this.x + dx, this.y) <= 0) this.x += dx;
         if (map.get(this.x, this.y + dy) <= 0) this.y += dy;
+        return this
     }
 }
 class Engine {
@@ -67,7 +68,7 @@ class Engine {
     }
 
     start() {
-
+        
     }
     update() {
 
